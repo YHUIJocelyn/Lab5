@@ -9,8 +9,10 @@
  */
 public class Bank {
 
-    public String bankName;
+    /** the bank name. */
+    private String bankName;
 
+    /** to set bank name. */
     public Bank() {
         bankName = "Illini Bank";
     }
@@ -29,6 +31,11 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (bankAccount.getAccountBalance() >= amount) {
+            bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -45,6 +52,8 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setAccountBalance(bankAccount.getAccountBalance() + amount);
+        return true;
     }
 
     /**
@@ -64,6 +73,11 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (withdrawMoney(source, amount)) {
+            depositMoney(destination, amount);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -77,9 +91,12 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setOwnerName(name);
     }
 
-    public static int totalAccounts = 0;
+    /** the number of total accounts. */
+    private static int totalAccounts = 0;
+
     /**
      * Uses static variable to get number of bank accounts opened.
      *
@@ -89,6 +106,7 @@ public class Bank {
         /*
          * Implement this function
          */
+        return totalAccounts;
     }
 
     /**
